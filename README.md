@@ -121,12 +121,12 @@ Api -- используется для получения и отправки д
 
 ```
 interface ICard {
-	id: string;
-	description: string;
-	image: string;
-	title: string;
-	category: string;
-	price: number;
+	id: string; /* id товара */
+	description: string; /* описание товара */
+	image: string; /* изображение товара */
+	title: string; /* название товара */
+	category: string; /* категория товара */
+	price: number; /* цена товара */
 }
 
 ```
@@ -135,12 +135,12 @@ interface ICard {
 
 ```
 interface IOrder {
-	email: string;
-	phone: string;
-	address: string;
-	payment: string;
-	total: number;
-	items: string[];
+	email: string; /* почта пользователя */
+	phone: string; /* телефон пользователя */
+	address: string; /* адрес пользователя */
+	payment: string; /* тип оплаты */
+	total: number; /* полная цена покупки */
+	items: string[]; /* все выбранные товары */
 }
 
 ```
