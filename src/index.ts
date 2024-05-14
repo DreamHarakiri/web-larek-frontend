@@ -93,7 +93,6 @@ events.on('basket:open', () => {
 
 // изменение в корзине
 events.on('basket:changed', () => {
-	page.counter = appState.getProducts().length;
 	let total = 0;
 	basket.items = appState.getProducts().map((item) => {
 		const card = new BasketItem(cloneTemplate(cardBasketTemplate), {
@@ -109,19 +108,18 @@ events.on('basket:changed', () => {
 	});
 	basket.total = total;
 	appState.order.total = total;
+	page.counter = appState.getProducts().length;
 });
 
 // добавление элемента в корзину
 events.on('add:product', (item: IProduct) => {
 	appState.addToBasket(item);
 	modal.close();
-	page.counter = appState.getProducts().length;
 });
 
 // удаление товара из корзины
 events.on('card:delete', (item: IProduct) => {
 	appState.removeFromBasket(item);
-	page.counter = appState.getProducts().length;
 });
 
 // нажимаем на кнопку оформить
@@ -157,7 +155,6 @@ events.on('deliveryFormError:change', (errors: Partial<IOrderDelivery>) => {
 
 //нажимаем на кнопку далее
 events.on('order:submit', () => {
-	appState.getTotal();
 	appState.setItems();
 	modal.render({
 		content: contacts.render({

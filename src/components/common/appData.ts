@@ -82,7 +82,6 @@ export class AppState extends Model<IAppState> {
 	}
 
 	updateBasket() {
-		this.emitChanges('counter:changed', this.basket);
 		this.emitChanges('basket:changed', this.basket);
 	}
 

@@ -1,19 +1,19 @@
-import { ICardActions, IProduct } from "../../types";
-import { ensureElement } from "../../utils/utils";
-import { Component } from "../base/components";
-import { settings } from "../../utils/constants";
+import { ICardActions, IProduct } from '../../types';
+import { ensureElement } from '../../utils/utils';
+import { Component } from '../base/components';
+import { settings } from '../../utils/constants';
 
-export class Card<T> extends Component <IProduct> {
-    protected _category?: HTMLElement;
-    protected _title: HTMLElement;
+export class Card extends Component<IProduct> {
+	protected _category?: HTMLElement;
+	protected _title: HTMLElement;
 	protected _image?: HTMLImageElement;
 	protected _description?: HTMLElement;
-    protected _price?: HTMLElement;
+	protected _price?: HTMLElement;
 	protected _index?: HTMLElement;
 	protected _categoryProduct = settings;
 	protected _button?: HTMLButtonElement;
 
-    constructor(container: HTMLElement, actions?: ICardActions) {
+	constructor(container: HTMLElement, actions?: ICardActions) {
 		super(container);
 		this._title = ensureElement<HTMLElement>(`.card__title`, container);
 		this._image = container.querySelector('.card__image');
@@ -47,14 +47,14 @@ export class Card<T> extends Component <IProduct> {
 	set title(value: string) {
 		this.setText(this._title, value);
 	}
-	
+
 	get title(): string {
 		return this._title.textContent || '';
 	}
 
 	set image(value: string) {
-        this.setImage(this._image, value, this._title.textContent);
-    }
+		this.setImage(this._image, value, this._title.textContent);
+	}
 
 	set category(value: string) {
 		this.setText(this._category, value);
@@ -76,35 +76,31 @@ export class Card<T> extends Component <IProduct> {
 		if (value === true) {
 			this.setText(this._button, 'Товар в корзине');
 			this._button.disabled = true;
-		}
-		else  {
+		} else {
 			this.setText(this._button, 'Товар не продается');
 		}
 	}
 
 	get price(): number {
-		return Number(this._price.textContent)
+		return Number(this._price.textContent);
 	}
 
-	set description (value: string) {
+	set description(value: string) {
 		if (Array.isArray(value)) {
-			this._description.replaceWith(...value.map(str => {
-			  const descriptionTemplate = this._description.cloneNode() as HTMLElement;
-			  this.setText(descriptionTemplate, str);
-			  return descriptionTemplate;
-			}))
-		  } else {
+			this._description.replaceWith(
+				...value.map((str) => {
+					const descriptionTemplate =
+						this._description.cloneNode() as HTMLElement;
+					this.setText(descriptionTemplate, str);
+					return descriptionTemplate;
+				})
+			);
+		} else {
 			this.setText(this._description, value);
-		  }
+		}
 	}
 }
 
 export type TCatalogItem = {
 	selected: boolean;
 };
-
-export class CatalogItem extends Card<TCatalogItem> {
-	constructor(container: HTMLElement, actions?: ICardActions) {
-		super(container, actions);
-	}
-}
