@@ -4,16 +4,16 @@ export type TProductCategory =
 	| 'дополнительное'
 	| 'кнопка'
 	| 'хард-скил';
-export type TPayment = 'онлайн' | 'при получении' | '';
+export type TPayment = 'онлайн' | 'при получении';
 
 export interface IProduct {
 	id: string;
 	category: TProductCategory;
 	title: string;
 	description: string;
-	price: number;
+	price: number | null;
 	image?: string;
-	selected: boolean;
+	selected?: boolean;
 	index?: number;
 }
 
@@ -35,7 +35,7 @@ export interface IOrderDelivery {
 
 export interface IOrder extends IOrderContact, IOrderDelivery {
 	items: string[];
-	total: number | string;
+	total: number;
 }
 
 export interface IOrderSuccess {
@@ -56,3 +56,8 @@ export interface ICardActions {
 }
 
 export type FormError = Partial<Record<keyof IOrder, string>>;
+
+export type ApiListResponse<Type> = {
+	total: number;
+	items: Type[];
+};

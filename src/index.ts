@@ -1,6 +1,6 @@
 import './scss/styles.scss';
 import { API_URL, CDN_URL } from './utils/constants';
-import { LarekApi } from './components/LarekApi';
+import { LarekApi } from './components/larekApi';
 import { EventEmitter } from './components/base/events';
 import { ensureElement, cloneTemplate } from './utils/utils';
 import { Page } from './components/common/page';
@@ -94,6 +94,7 @@ events.on('basket:open', () => {
 // изменение в корзине
 events.on('basket:changed', () => {
 	let total = 0;
+	let basketItemsCount = 0;
 	basket.items = appState.getProducts().map((item) => {
 		const card = new BasketItem(cloneTemplate(cardBasketTemplate), {
 			onClick: () => {
@@ -101,7 +102,9 @@ events.on('basket:changed', () => {
 			},
 		});
 		total += item.price;
+		++basketItemsCount;
 		return card.render({
+			index: basketItemsCount,
 			title: item.title,
 			price: item.price,
 		});
@@ -129,7 +132,7 @@ events.on('order:open', () => {
 			valid: order.valid,
 			errors: order.errors,
 			address: '',
-			payment: '',
+			payment: 'онлайн',
 		}),
 	});
 });

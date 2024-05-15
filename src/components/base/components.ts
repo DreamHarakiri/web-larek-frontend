@@ -1,6 +1,5 @@
 export abstract class Component<T> {
-	protected constructor(protected readonly container: HTMLElement) {
-	}
+	protected constructor(protected readonly container: HTMLElement) {}
 
 	// Переключаем класс
 	toggleClass(element: HTMLElement, className: string, force?: boolean) {
@@ -27,10 +26,10 @@ export abstract class Component<T> {
 		element.style.removeProperty('display');
 	}
 
-    // Скрыть
-    protected setHidden(element: HTMLElement) {
-        element.style.display = 'none';
-    }
+	// Скрыть
+	protected setHidden(element: HTMLElement) {
+		element.style.display = 'none';
+	}
 
 	// Устаноливаем изображение с альтернативным текстом
 	protected setImage(element: HTMLImageElement, src: string, alt?: string) {

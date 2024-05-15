@@ -56,7 +56,7 @@ export class Basket extends Component<IBasketView> {
 export interface IBasketItem {
 	title: string;
 	price: number;
-	index?: number;
+	index: number;
 	description: string;
 	category: string;
 	id?: string;

@@ -27,7 +27,7 @@ export class AppState extends Model<IAppState> {
 	basket: IProduct[] = [];
 	preview: string | null;
 	order: IOrder = {
-		payment: '',
+		payment: 'онлайн',
 		items: [],
 		total: 0,
 		email: '',
@@ -83,6 +83,7 @@ export class AppState extends Model<IAppState> {
 
 	updateBasket() {
 		this.emitChanges('basket:changed', this.basket);
+		console.log(this.basket);
 	}
 
 	setPaymentMethod(method: string) {

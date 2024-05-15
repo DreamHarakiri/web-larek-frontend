@@ -81,10 +81,6 @@ export class Card extends Component<IProduct> {
 		}
 	}
 
-	get price(): number {
-		return Number(this._price.textContent);
-	}
-
 	set description(value: string) {
 		if (Array.isArray(value)) {
 			this._description.replaceWith(
